@@ -17,25 +17,37 @@ public class Engine {
 }
 
 	public void login_menu() {
-		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("What is your email address?");
+		String user = scan.nextLine();
+		System.out.println("What is your password?");
+		String pass = scan.nextLine(); // looks at selected file in scan
 
-	            Scanner scan = new Scanner(System.in);
-	            System.out.println("What is your email address?");
-	            String user = scan.nextLine();
-	            System.out.println("What is your password?");
-	            String pass = scan.nextLine(); // looks at selected file in scan
+		String inpUser = user;
+		String inpPass = pass; // gets input from user
 
-	            String inpUser = user;
-	            String inpPass = pass; // gets input from user
+		if (inpUser.equals(user) && inpPass.equals(pass)) {
+			System.out.print("Input validated.");
+			System.out.println();
+			System.out.println("Welcome: " + user);
+		} else {
+			System.out.print("Invalid login.");
+			login_menu();
+		}
+	}
 
-	            if (inpUser.equals(user) && inpPass.equals(pass)) {
-	                System.out.print("Input validated.");
-	                System.out.println();
-	                System.out.println("Welcome: " + user);
-	            } else {
-	                System.out.print("Invalid login.");
-	                login_menu();
-	            }
+	//TODO Integrate with how items displayed in Engine
+	public void itemSelect(){
+		// Engine.SelectionOutput(); // placeholder for menu
+		Scanner itemPicker = new Scanner(System.in);
+		System.out.println("Please select the item you wish to buy:");
+		String userChoice = itemPicker.nextLine();
 
+		/*
+		 if (itemList.contains(userchoice){
+			Engine.purchase(userChoice)
+			Cart.addToCart(userChoice) // if cart implemented
+		*/
+		System.out.println(userChoice + " has been purchased!");
 	}
 }

@@ -15,3 +15,7 @@ bin/CPU.class
 bin/CPU.class
 bin/Display.class
 *.class
+.idea/vcs.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea
