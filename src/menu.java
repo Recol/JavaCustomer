@@ -15,10 +15,12 @@ public class menu {
 			CPU object_CPU = new CPU();
 			GPU object_GPU = new GPU();
 			
+			engine_object.login_menu();
+			identation();
 			Scanner input = new Scanner(System.in);
 			
 			do {
-				System.out.println("Menu");
+				System.out.println("Hardware Shop");
 				identation();
 				
 				engine_object.Menu_Output();
