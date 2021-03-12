@@ -33,7 +33,9 @@ public class Engine {
 		} else {
 			System.out.print("Invalid login.");
 			login_menu();
+			scan.close();
 		}
+		
 	}
 
 	//TODO Integrate with how items displayed in Engine
@@ -49,5 +51,6 @@ public class Engine {
 			Cart.addToCart(userChoice) // if cart implemented
 		*/
 		System.out.println(userChoice + " has been purchased!");
+		itemPicker.close();
 	}
 }
