@@ -67,8 +67,6 @@ public class menu {
 			 * Used as an accessible whitespace for the menu.
 			 */
 			}
-			
-
 	}
 
 

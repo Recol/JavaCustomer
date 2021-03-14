@@ -1,5 +1,3 @@
-
-
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -14,7 +12,7 @@ public class Engine {
 	menu.put("4", "4: Exit");
 
 	menu.values().stream().forEach(System.out::println);
-}
+	}
 
 	public void login_menu() {
 		Scanner scan = new Scanner(System.in);
