@@ -12,8 +12,8 @@ public class menu {
 		 */
 			
 			Engine engine_object = new Engine();
-			CPU object_CPU = new CPU();
-			GPU object_GPU = new GPU();
+			Stock object_CPU = new Stock();
+			Stock object_GPU = new Stock();
 			
 			engine_object.login_menu();
 			identation();
@@ -30,22 +30,21 @@ public class menu {
 					/**
 					 * Load in the CPU class to load CPU entities which will be used for sale.
 					 */
-					object_CPU.CPU_Items();
+					
 					engine_object.itemSelect();
 					break;
 				case "2": 
 					/**
 					 * Load in the GPU class to load GPU entities which will be used for sale.
 					 */
-					object_GPU.GPU_Items();
+					
 					engine_object.itemSelect();
 					break;
 			case "3":
 				/*
 				 * Load in all the classes which hold hardware data for option 3.
 				 */
-				object_CPU.CPU_Items();
-				object_GPU.GPU_Items();
+				
 				engine_object.itemSelect();
 
 				break;
