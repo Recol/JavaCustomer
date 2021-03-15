@@ -1,5 +1,4 @@
 
-
 public class GPU {
 	Engine object_engine = new Engine();
 	String GPU1 = "";
@@ -20,6 +19,6 @@ public class GPU {
 		  */
 		 System.out.println("The price of + " + GPU1 + "is £:" + gpu_price1);
 		 System.out.println("The price of + " + GPU2 + "is £:" + gpu_price2);
-	 }
 	}
+}
 
