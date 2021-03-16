@@ -49,6 +49,11 @@ public class Engine {
 			Cart.addToCart(userChoice) // if cart implemented
 		*/
 		System.out.println(userChoice + " has been purchased!");
+		sendOrderConfirmationEmail();
 		itemPicker.close();
+	}
+
+	public void sendOrderConfirmationEmail(){
+		System.out.println("Order Confirmed - Receipt sent to #####"); // get user email if login/registration implemented?
 	}
 }
