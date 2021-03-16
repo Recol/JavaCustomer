@@ -25,16 +25,9 @@ public enum Stock_Items {
 
 	Engine engine_object = new Engine();
 
-	/**
-	 * Placeholder strings for GPU's.
-	 */
-	
-	
 
 	 public void CPU_Prices() {
-		 /**
-		  * Placeholder code for implementing GPU prices.
-		  */
+		
 		 System.out.println("The price of + (insert reference to CPU1 here) + £: " + cpu_price1);
 		 System.out.println("The price of + (insert reference to CPU2 here) + £: " + cpu_price2);
 
