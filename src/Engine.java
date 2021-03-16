@@ -37,23 +37,35 @@ public class Engine {
 	}
 
 	//TODO Integrate with how items displayed in Engine
-	public void itemSelect(){
-		// Engine.SelectionOutput(); // placeholder for menu
+	public boolean itemSelect() {
+		boolean validSelection = false;
 		Scanner itemPicker = new Scanner(System.in);
+		itemDisplay();
 		System.out.println("Please select the item you wish to buy:");
-		String userChoice = itemPicker.nextLine();
-
-		/*
-		 if (itemList.contains(userchoice){
-			Engine.purchase(userChoice)
-			Cart.addToCart(userChoice) // if cart implemented
-		*/
-		System.out.println(userChoice + " has been purchased!");
+		int userChoice;
+		while (!itemPicker.hasNextInt()) {
+			System.out.println("Please ensure you are entering a valid number:");
+			itemPicker.next();
+		}
+		userChoice = itemPicker.nextInt();
+		Stock.Stock_Items purchasedItem = Stock.Stock_Items.values()[userChoice];
+		System.out.println(purchasedItem.getName() + " has been purchased for " + purchasedItem.getPrice() + "!");
 		sendOrderConfirmationEmail();
 		itemPicker.close();
+		validSelection = true;
+		return validSelection;
 	}
 
 	public void sendOrderConfirmationEmail(){
 		System.out.println("Order Confirmed - Receipt sent to #####"); // get user email if login/registration implemented?
+	}
+
+	public void itemDisplay(){
+		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
+		int id = 0;
+		for (Stock.Stock_Items item : stockItems){
+			System.out.println(id +": " + item.getName()+", " + item.getPrice());
+			id++;
+		}
 	}
 }
