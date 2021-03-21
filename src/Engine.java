@@ -45,13 +45,12 @@ public class Engine {
 		int userChoice;
 		while (!itemPicker.hasNextInt()) {
 			System.out.println("Please ensure you are entering a valid number:");
-			itemPicker.next();
+			itemPicker.nextLine();
 		}
 		userChoice = itemPicker.nextInt();
 		Stock.Stock_Items purchasedItem = Stock.Stock_Items.values()[userChoice];
 		System.out.println(purchasedItem.getName() + " has been purchased for " + purchasedItem.getPrice() + "!");
 		sendOrderConfirmationEmail();
-		itemPicker.close();
 		validSelection = true;
 		return validSelection;
 	}
