@@ -3,15 +3,14 @@ import java.util.Scanner;
 
 public class Engine {
 	Display display_object = new Display();
-	
-	public void Menu_Output() {
-	HashMap<String, String >menu = new HashMap<String, String>();
-	menu.put("1", "1: Buy a CPU");
-	menu.put("2", "2: Buy a GPU");
-	menu.put("3", "3: List all hardware");
-	menu.put("4", "4: Exit");
 
-	menu.values().stream().forEach(System.out::println);
+	public void Menu_Output() {
+		HashMap<String, String >menu = new HashMap<String, String>();
+		menu.put("1", "1: Buy a CPU");
+		menu.put("2", "2: Buy a GPU");
+		menu.put("3", "3: List all hardware");
+		menu.put("4", "4: Exit");
+		menu.values().stream().forEach(System.out::println);
 	}
 
 	public void login_menu() {
@@ -33,22 +32,51 @@ public class Engine {
 			login_menu();
 			scan.close();
 		}
-		
 	}
 
-	//TODO Integrate with how items displayed in Engine
-	public void itemSelect(){
-		// Engine.SelectionOutput(); // placeholder for menu
+	public boolean itemSelect() {
 		Scanner itemPicker = new Scanner(System.in);
-		System.out.println("Please select the item you wish to buy:");
-		String userChoice = itemPicker.nextLine();
+		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
+		itemDisplay();
+		int userChoice = Input.getInt(itemPicker, 0, stockItems.length);
+		Stock.Stock_Items purchasedItem = stockItems[userChoice];
+		System.out.println(purchasedItem.getName() + " has been purchased for " + purchasedItem.getPrice() + "!");
+		sendOrderConfirmationEmail();
+		return true;
+	}
 
-		/*
-		 if (itemList.contains(userchoice){
-			Engine.purchase(userChoice)
-			Cart.addToCart(userChoice) // if cart implemented
-		*/
-		System.out.println(userChoice + " has been purchased!");
-		itemPicker.close();
+	public void sendOrderConfirmationEmail(){
+		System.out.println("Order Confirmed - Receipt sent to #####"); // get user email if login/registration implemented?
+	}
+
+	public void itemDisplay(){
+		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
+
+		int id = 0;
+		for (Stock.Stock_Items item : stockItems){
+			System.out.println(id +": " + item.getName()+", " + item.getPrice());
+			id++;
+		}
+	}
+
+	public void cpuDisplay(){
+		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
+		int id = 0;
+		for (Stock.Stock_Items item : stockItems){
+			if(item.getType().equals("CPU")) {
+				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
+				id++;
+			}
+		}
+	}
+	public void gpuDisplay(){
+		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
+		int id = 0;
+		for (Stock.Stock_Items item : stockItems){
+			if(item.getType() == "GPU") {
+				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
+				id++;
+			}
+		}
 	}
 }
