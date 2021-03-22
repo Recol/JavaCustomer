@@ -15,4 +15,13 @@ public class Input {
         } while (number < minRange && number > maxRange);
         return number;
     }
+
+    public static String getString(){
+        String inputString;
+        while (!scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+        inputString = scanner.nextLine();
+        return inputString;
+    }
 }

@@ -1,4 +1,3 @@
-
 public class Stock {
     public enum Stock_Items {
         RYZEN_7("AMD Ryzen 9 5900X", 829.95, "CPU"),

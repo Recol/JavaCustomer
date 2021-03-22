@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Engine {
 	Display display_object = new Display();
@@ -14,11 +13,10 @@ public class Engine {
 	}
 
 	public void login_menu() {
-		Scanner scan = new Scanner(System.in);
 		System.out.println("What is your email address?");
-		String user = scan.nextLine();
+		String user = Input.getString();
 		System.out.println("What is your password?");
-		String pass = scan.nextLine(); // looks at selected file in scan
+		String pass = Input.getString();; // looks at selected file in scan
 
 		String inpUser = user;
 		String inpPass = pass; // gets input from user
@@ -30,7 +28,6 @@ public class Engine {
 		} else {
 			System.out.print("Invalid login.");
 			login_menu();
-			scan.close();
 		}
 	}
 
@@ -72,7 +69,7 @@ public class Engine {
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		int id = 0;
 		for (Stock.Stock_Items item : stockItems){
-			if(item.getType() == "GPU") {
+			if(item.getType().equals("GPU")) {
 				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
 				id++;
 			}
