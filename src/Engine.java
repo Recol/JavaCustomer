@@ -35,10 +35,9 @@ public class Engine {
 	}
 
 	public boolean itemSelect() {
-		Scanner itemPicker = new Scanner(System.in);
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		itemDisplay();
-		int userChoice = Input.getInt(itemPicker, 0, stockItems.length);
+		int userChoice = Input.getInt(0, stockItems.length);
 		Stock.Stock_Items purchasedItem = stockItems[userChoice];
 		System.out.println(purchasedItem.getName() + " has been purchased for " + purchasedItem.getPrice() + "!");
 		sendOrderConfirmationEmail();

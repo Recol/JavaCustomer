@@ -11,13 +11,12 @@ public class menu {
 		Engine engine_object = new Engine();
 		Stock object_CPU = new Stock();
 		Stock object_GPU = new Stock();
-		// engine_object.login_menu();
+		engine_object.login_menu();
 		indent();
-		System.out.println("Hardware Shop");
+		System.out.println("Welcome to the store!");
 		do {
-			Scanner input = new Scanner(System.in);
 			engine_object.Menu_Output();
-			int option = Input.getInt(input,1,4);
+			int option = Input.getInt(1,4);
 			switch(option) {
 			case 1:
 				/**

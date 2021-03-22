@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class Input {
-    public static int getInt(Scanner scanner, int minRange, int maxRange){
+    static Scanner scanner = new Scanner(System.in);
+
+    public static int getInt(int minRange, int maxRange){
         int number;
         do {
             System.out.println("Please make your selection.");
