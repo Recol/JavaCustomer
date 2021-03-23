@@ -1,9 +1,9 @@
 import java.util.HashMap;
 
 public class Engine {
-	Display display_object = new Display();
+	Display displayObject = new Display();
 
-	public void Menu_Output() {
+	public void menuOutput() {
 		HashMap<String, String >menu = new HashMap<String, String>();
 		menu.put("1", "1: Buy a CPU");
 		menu.put("2", "2: Buy a GPU");

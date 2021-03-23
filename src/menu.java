@@ -4,34 +4,34 @@ public class menu {
 		/**
 		 * This will load in the necessary class objects which will be accessed via instantiation.
 		 */
-		Engine engine_object = new Engine();
+		Engine engineObject = new Engine();
 		AuthenticationFromMemory auth = new AuthenticationFromMemory();
-		Stock object_CPU = new Stock();
-		Stock object_GPU = new Stock();
+		Stock objectCPU = new Stock();
+		Stock objectGPU = new Stock();
 		indent();
 		auth.loginMenu();
 		System.out.println("Welcome to the store!");
 		do {
-			engine_object.Menu_Output();
+			engineObject.menuOutput();
 			int option = Input.getInt(1,4);
 			switch(option) {
 			case 1:
 				/**
 				 * Load in the CPU class to load CPU entities which will be used for sale.
 				 */
-				engine_object.itemSelect();
+				engineObject.itemSelect();
 				break;
 			case 2:
 				/**
 				 * Load in the GPU class to load GPU entities which will be used for sale.
 				 */
-				engine_object.itemSelect();
+				engineObject.itemSelect();
 				break;
 			case 3:
 				/*
 				 * Load in all the classes which hold hardware data for option 3.
 				 */
-				engine_object.itemSelect();
+				engineObject.itemSelect();
 				break;
 			case 4:
 				System.out.println("System now shutting down");
