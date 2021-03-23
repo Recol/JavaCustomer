@@ -12,25 +12,6 @@ public class Engine {
 		menu.values().stream().forEach(System.out::println);
 	}
 
-	public void login_menu() {
-		System.out.println("What is your email address?");
-		String user = Input.getString();
-		System.out.println("What is your password?");
-		String pass = Input.getString();; // looks at selected file in scan
-
-		String inpUser = user;
-		String inpPass = pass; // gets input from user
-
-		if (inpUser.equals(user) && inpPass.equals(pass)) {
-			System.out.print("Input validated.");
-			System.out.println();
-			System.out.println("Welcome: " + user);
-		} else {
-			System.out.print("Invalid login.");
-			login_menu();
-		}
-	}
-
 	public boolean itemSelect() {
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		itemDisplay();

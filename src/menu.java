@@ -5,10 +5,11 @@ public class menu {
 		 * This will load in the necessary class objects which will be accessed via instantiation.
 		 */
 		Engine engine_object = new Engine();
+		AuthenticationFromMemory auth = new AuthenticationFromMemory();
 		Stock object_CPU = new Stock();
 		Stock object_GPU = new Stock();
-		engine_object.login_menu();
 		indent();
+		auth.loginMenu();
 		System.out.println("Welcome to the store!");
 		do {
 			engine_object.Menu_Output();
