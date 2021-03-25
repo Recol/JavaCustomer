@@ -64,6 +64,7 @@ public class Engine {
 			} else {
 				System.out.println("Passwords are not matching");
 			}
+			input.close();
 		}
 	}
 
