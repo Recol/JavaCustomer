@@ -1,79 +1,115 @@
 import java.util.HashMap;
 import java.util.Scanner;
+import java.io.*;
+import java.util.Formatter;
 
 public class Engine {
-	Display display_object = new Display();
 
-	public void Menu_Output() {
-		HashMap<String, String >menu = new HashMap<String, String>();
-		menu.put("1", "1: Buy a CPU");
-		menu.put("2", "2: Buy a GPU");
-		menu.put("3", "3: List all hardware");
+	public void menuOutput() {
+		HashMap<String, String> menu = new HashMap<String, String>();
+		menu.put("1", "1: List CPUs");
+		menu.put("2", "2: List GPUs");
+		menu.put("3", "3: Buy Hardware (CPU & GPU)");
 		menu.put("4", "4: Exit");
 		menu.values().stream().forEach(System.out::println);
 	}
 
-	public void login_menu() {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("What is your email address?");
-		String user = scan.nextLine();
-		System.out.println("What is your password?");
-		String pass = scan.nextLine(); // looks at selected file in scan
-
-		String inpUser = user;
-		String inpPass = pass; // gets input from user
-
-		if (inpUser.equals(user) && inpPass.equals(pass)) {
-			System.out.print("Input validated.");
-			System.out.println();
-			System.out.println("Welcome: " + user);
+	public void register_menu(){
+		Scanner input = new Scanner(System.in);
+		System.out.println("Registration Page");
+		System.out.printf("Username: ");
+		String user = input.next();
+		System.out.printf("Password: ");
+		String pass = input.next();
+		System.out.printf("Confirm Password: ");
+		String conf = input.next();
+		int length = pass.length();
+		int passInt = Integer.parseInt(pass);
+		int confInt = Integer.parseInt(conf);
+		File file = new File("C:"+File.separator + "Users"+File.separator + "Passwords"+File.separator + "Downloads"+File.separator + "accounts.txt");
+		if (length < 6) {
+			System.out.println("Too short password, password must be 6 characters or more");
 		} else {
-			System.out.print("Invalid login.");
-			login_menu();
-			scan.close();
+			if (passInt == confInt) {
+
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(file));
+					String current;
+					boolean checkname = false;
+					while ((current = br.readLine()) != null) {
+						if(current.equalsIgnoreCase(user)){
+							checkname = true;
+						}
+					}
+					if (checkname) {
+						System.out.println("Username already exists, please type another one");
+					} else {
+						Formatter x = null;
+						try {
+							FileWriter f = new FileWriter(file.getAbsoluteFile());
+							BufferedWriter bw = new BufferedWriter(f);
+							bw.write(user);
+							bw.close();
+							x = new Formatter(f);
+							x.format("%s %s%n", user.toUpperCase(), pass);
+							System.out.println("You registered successfully");
+							x.close();
+							br.close();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				catch (Exception e) {
+				}
+			} else {
+				System.out.println("Passwords are not matching");
+			}
+			input.close();
 		}
 	}
 
 	public boolean itemSelect() {
-		Scanner itemPicker = new Scanner(System.in);
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		itemDisplay();
-		int userChoice = Input.getInt(itemPicker, 0, stockItems.length);
+		int userChoice = Input.getInt(0, stockItems.length);
 		Stock.Stock_Items purchasedItem = stockItems[userChoice];
 		System.out.println(purchasedItem.getName() + " has been purchased for " + purchasedItem.getPrice() + "!");
 		sendOrderConfirmationEmail();
 		return true;
 	}
 
-	public void sendOrderConfirmationEmail(){
-		System.out.println("Order Confirmed - Receipt sent to #####"); // get user email if login/registration implemented?
+	public void sendOrderConfirmationEmail() {
+		System.out.println("Order Confirmed - Receipt sent to ####"); // get user email if login/registration
+																		// implemented?
 	}
 
-	public void itemDisplay(){
+	public void itemDisplay() {
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 
 		int id = 0;
-		for (Stock.Stock_Items item : stockItems){
-			System.out.println(id +": " + item.getName()+", " + item.getPrice());
+		for (Stock.Stock_Items item : stockItems) {
+			System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
 			id++;
 		}
 	}
 
-	public void cpuDisplay(){
+	public void cpuDisplay() {
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		int id = 0;
-		for (Stock.Stock_Items item : stockItems){
-			if(item.getType().equals("CPU")) {
+		for (Stock.Stock_Items item : stockItems) {
+			if (item.getType().equals("CPU")) {
 				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
 				id++;
 			}
 		}
 	}
-	public void gpuDisplay(){
+
+	public void gpuDisplay() {
 		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		int id = 0;
-		for (Stock.Stock_Items item : stockItems){
-			if(item.getType() == "GPU") {
+		for (Stock.Stock_Items item : stockItems) {
+			if (item.getType().equals("GPU")) {
 				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
 				id++;
 			}
