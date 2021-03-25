@@ -8,11 +8,7 @@ public class Stock {
 		private final double price;
 		private final String type;
 
-		int cpu_price1 = 100;
-		int cpu_price2 = 150;
-		int gpu_price1 = 100;
-		int gpu_price2 = 150;
-
+	
 		Stock_Items(String name, double price, String type) {
 			this.name = name;
 			this.price = price;

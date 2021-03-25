@@ -54,6 +54,7 @@ public class Engine {
 							x.format("%s %s%n", user.toUpperCase(), pass);
 							System.out.println("You registered successfully");
 							x.close();
+							br.close();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
