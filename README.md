@@ -4,6 +4,8 @@ This project is intended to function by allowing individuals to buy base PC hard
 
 # Patch Notes
 
+V2.0  
+  Beta release has now been synced.  
 V1.0  
   Upgraded sync branches to bring development and master in line with each other.  
   
