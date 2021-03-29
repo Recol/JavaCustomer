@@ -22,6 +22,7 @@ public class Menu {
 					indent();
 					break;
 				case 3:
+					engineObject.itemDisplay();
 					engineObject.itemSelect(stockToUse);
 					indent();
 					break;

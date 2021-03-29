@@ -78,7 +78,6 @@ public class Engine {
 
 	public boolean itemSelect(StockInterface stock) {
 		List<String[]> stockItems = stock.getFileData();
-		itemDisplay();
 		int userChoice = Input.getInt(0, stockItems.size());
 		String[] purchasedItem = stockItems.get(userChoice);
 		System.out.println(purchasedItem[1] + " has been purchased for " + purchasedItem[2] + "!");

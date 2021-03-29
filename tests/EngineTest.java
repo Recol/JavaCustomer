@@ -6,7 +6,7 @@ public class EngineTest {
     StockInterface stockFromStub = new StockFromStub();
 
     @Test
-    public void itemSelectionReturnsTrue(){
+    public void itemSelectionReturnsTrueWithStub(){
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
         Engine testEngine = new Engine(stockFromStub);
@@ -15,4 +15,28 @@ public class EngineTest {
 
         assertTrue(testFine);
     }
+
+    @Test
+    public void itemSelectionReturnsTrueWithFile(){
+        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
+        System.setIn(in);
+        StockInterface stockFromFile = new StockFromFile();
+        Engine testEngine = new Engine(stockFromFile);
+
+        boolean testFine = testEngine.itemSelect(stockFromFile);
+
+        assertTrue(testFine);
+    }
+
+    @Test
+    public void itemSelectionOutputIsCorrect(){
+        //TODO - check output stream to match mock return from stock
+        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
+        System.setIn(in);
+        StockInterface stockFromFile = new StockFromFile();
+        Engine testEngine = new Engine(stockFromFile);
+
+        assertEquals(outputStream, mockOutput);
+    }
+
 }

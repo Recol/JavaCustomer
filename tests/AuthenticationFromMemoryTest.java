@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AuthenticationFromMemoryTest {
 
     @Test
-    public void validUserReturnsTrueWhenValid(){
+    public void passwordMatchesReturnsTrueWhenValid(){
         AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
 
         boolean detailsMatch = testAuthenticate.passwordMatches("username","password");
@@ -14,10 +14,19 @@ public class AuthenticationFromMemoryTest {
     }
 
     @Test
-    public void validUserReturnsFalseWhenInvalid(){
+    public void passwordMatchesReturnsFalseWhenInvalid(){
         AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
 
         boolean noMatch = testAuthenticate.passwordMatches("username","wrong password");
+
+        assertFalse(noMatch);
+    }
+
+    @Test
+    public void passwordMatchesReturnsFalseWhenNull(){
+        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+
+        boolean noMatch = testAuthenticate.passwordMatches("username",null);
 
         assertFalse(noMatch);
     }
@@ -36,6 +45,15 @@ public class AuthenticationFromMemoryTest {
         AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
 
         boolean noMatch = testAuthenticate.userExists("no such user");
+
+        assertFalse(noMatch);
+    }
+
+    @Test
+    public void userExistsReturnsFalseWhenNull(){
+        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+
+        boolean noMatch = testAuthenticate.userExists(null);
 
         assertFalse(noMatch);
     }
