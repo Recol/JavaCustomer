@@ -1,7 +1,7 @@
 public class Menu {
+	private static final StockFromFile stockToUse = new StockFromFile();
 
 	public static void main(String[] args) {
-		StockInterface stockToUse = stockSelect();
 		Engine engineObject = new Engine(stockToUse);
 		AuthenticationFromMemory auth = new AuthenticationFromMemory();
 		indent();
@@ -36,14 +36,6 @@ public class Menu {
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-	}
-
-	public static StockInterface stockSelect(){
-		int selection = Input.getInt(1,2);
-		if (selection == 1) {
-			return new StockFromFile<>();
-		}
-		return new StockFromStub();
 	}
 
 	public static void indent() {

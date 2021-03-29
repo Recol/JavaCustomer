@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class StockFromFile<selection> implements StockInterface{
+public class StockFromFile implements StockInterface{
 
     public List<String[]> getFileData(){
         List<String[]> fileData = new ArrayList<>();
