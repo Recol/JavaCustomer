@@ -6,9 +6,11 @@ import java.util.Formatter;
 
 public class Engine {
 	StockInterface stockSelection;
+	private final List<String[]> stockItems;
 
 	public Engine(StockInterface stockSelection){
 		this.stockSelection = stockSelection;
+		stockItems = this.stockSelection.getFileData();
 	}
 	public void menuOutput() {
 		HashMap<String, String> menu = new HashMap<String, String>();
@@ -85,36 +87,33 @@ public class Engine {
 	}
 
 	public void sendOrderConfirmationEmail() {
-		System.out.println("Order Confirmed - Receipt sent to ####"); // get user email if login/registration
+		System.out.println("Order Confirmed - Receipt sent!"); // get user email if login/registration
 																		// implemented?
 	}
 
 	public void itemDisplay() {
-		List<String[]> stockItems = this.stockSelection.getFileData();
 		int id = 0;
-		for (String[] item : stockItems) {
+		for (String[] item : this.stockItems) {
 			System.out.println(id + ": " + item[1] + ", " + item[2]);
 			id++;
 		}
 	}
 
 	public void cpuDisplay() {
-		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		int id = 0;
-		for (Stock.Stock_Items item : stockItems) {
-			if (item.getType().equals("CPU")) {
-				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
+		for(String[] item : this.stockItems) {
+			if (item[3].equals("CPU")) {
+				System.out.println(id + ": " + item[1] + ", " + item[2]);
 				id++;
 			}
 		}
 	}
 
 	public void gpuDisplay() {
-		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
 		int id = 0;
-		for (Stock.Stock_Items item : stockItems) {
-			if (item.getType().equals("GPU")) {
-				System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
+		for(String[] item : this.stockItems) {
+			if (item[3].equals("GPU")) {
+				System.out.println(id + ": " + item[1] + ", " + item[2]);
 				id++;
 			}
 		}
