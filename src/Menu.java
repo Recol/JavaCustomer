@@ -1,15 +1,14 @@
 public class Menu {
 
 	public static void main(String[] args) {
-
-		Engine engineObject = new Engine();
+		StockInterface stockToUse = stockSelect();
+		Engine engineObject = new Engine(stockToUse);
 		AuthenticationFromMemory auth = new AuthenticationFromMemory();
 		indent();
 		auth.loginMenu();
 		System.out.println("Welcome to the store!");
 		try {
 			do {
-
 				engineObject.menuOutput();
 				int option = Input.getInt(1, 4);
 				switch (option) {
@@ -23,7 +22,7 @@ public class Menu {
 					indent();
 					break;
 				case 3:
-					engineObject.itemSelect();
+					engineObject.itemSelect(stockToUse);
 					indent();
 					break;
 				case 4:
@@ -37,7 +36,14 @@ public class Menu {
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
+	}
 
+	public static StockInterface stockSelect(){
+		int selection = Input.getInt(1,2);
+		if (selection == 1) {
+			return new StockFromFile<>();
+		}
+		return new StockFromStub();
 	}
 
 	public static void indent() {

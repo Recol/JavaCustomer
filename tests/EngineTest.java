@@ -7,9 +7,10 @@ public class EngineTest {
     public void itemSelectionReturnsTrue(){
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
-        Engine testEngine = new Engine();
+        StockInterface stockFromStub = new StockFromStub();
+        Engine testEngine = new Engine(stockFromStub);
 
-        boolean testFine = testEngine.itemSelect();
+        boolean testFine = testEngine.itemSelect(stockFromStub);
 
         assertTrue(testFine);
     }

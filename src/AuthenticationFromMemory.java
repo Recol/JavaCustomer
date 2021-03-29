@@ -20,7 +20,7 @@ public class AuthenticationFromMemory implements AuthenticationInterface {
 			String pass;
 			do {
 				pass = Input.getString();
-			} while (!validUser(user, pass));
+			} while (!passwordMatches(user, pass));
 			System.out.println("Login successful. Welcome, " + user + "!");
 			System.out.println("");
 
@@ -30,7 +30,7 @@ public class AuthenticationFromMemory implements AuthenticationInterface {
 		}
 	}
 
-	public boolean validUser(String username, String password) {
+	public boolean passwordMatches(String username, String password) {
 		if (!validDetails.get(username).equals(password)) {
 			System.out.println("Password incorrect. Please try again");
 			return false;

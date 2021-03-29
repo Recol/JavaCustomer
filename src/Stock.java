@@ -26,8 +26,5 @@ public class Stock {
 		public String getType() {
 			return type;
 		}
-
-		Engine engine_object = new Engine();
-
 	}
 }

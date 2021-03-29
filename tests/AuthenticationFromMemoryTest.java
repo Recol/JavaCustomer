@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AuthenticationFromMemoryTest {
@@ -10,7 +8,7 @@ public class AuthenticationFromMemoryTest {
     public void validUserReturnsTrueWhenValid(){
         AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
 
-        boolean detailsMatch = testAuthenticate.validUser("username","password");
+        boolean detailsMatch = testAuthenticate.passwordMatches("username","password");
 
         assertTrue(detailsMatch);
     }
@@ -19,7 +17,7 @@ public class AuthenticationFromMemoryTest {
     public void validUserReturnsFalseWhenInvalid(){
         AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
 
-        boolean noMatch = testAuthenticate.validUser("username","wrong password");
+        boolean noMatch = testAuthenticate.passwordMatches("username","wrong password");
 
         assertFalse(noMatch);
     }

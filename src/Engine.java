@@ -1,10 +1,15 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 import java.util.Formatter;
 
 public class Engine {
+	StockInterface stockSelection;
 
+	public Engine(StockInterface stockSelection){
+		this.stockSelection = stockSelection;
+	}
 	public void menuOutput() {
 		HashMap<String, String> menu = new HashMap<String, String>();
 		menu.put("1", "1: List CPUs");
@@ -69,12 +74,12 @@ public class Engine {
 		}
 	}
 
-	public boolean itemSelect() {
-		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
+	public boolean itemSelect(StockInterface stock) {
+		List<String[]> stockItems = stock.getFileData();
 		itemDisplay();
-		int userChoice = Input.getInt(0, stockItems.length);
-		Stock.Stock_Items purchasedItem = stockItems[userChoice];
-		System.out.println(purchasedItem.getName() + " has been purchased for " + purchasedItem.getPrice() + "!");
+		int userChoice = Input.getInt(0, stockItems.size());
+		String[] purchasedItem = stockItems.get(userChoice);
+		System.out.println(purchasedItem[1] + " has been purchased for " + purchasedItem[2] + "!");
 		sendOrderConfirmationEmail();
 		return true;
 	}
@@ -85,11 +90,10 @@ public class Engine {
 	}
 
 	public void itemDisplay() {
-		Stock.Stock_Items[] stockItems = Stock.Stock_Items.values();
-
+		List<String[]> stockItems = this.stockSelection.getFileData();
 		int id = 0;
-		for (Stock.Stock_Items item : stockItems) {
-			System.out.println(id + ": " + item.getName() + ", " + item.getPrice());
+		for (String[] item : stockItems) {
+			System.out.println(id + ": " + item[1] + ", " + item[2]);
 			id++;
 		}
 	}

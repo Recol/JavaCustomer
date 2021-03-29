@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class StockFile {
+public class StockFromFile<selection> implements StockInterface{
 
-    public static List<String[]> getFileData(){
-        List<String[]> fileData = new ArrayList<String[]>();
+    public List<String[]> getFileData(){
+        List<String[]> fileData = new ArrayList<>();
         try {
-            File filePath = new File("src/stock.csv");
+            File filePath = new File("src/resources/stock.csv");
             Scanner dataReader = new Scanner(filePath);
             while (dataReader.hasNextLine()) {
                 String fileRow = dataReader.nextLine();
@@ -24,16 +24,15 @@ public class StockFile {
         return fileData;
     }
 
-    public static HashMap<String, String[]> setupProductCatalogue(List<String[]> stockItems){
+    public HashMap<String, String[]> setupProductCatalogue(List<String[]> stockItems){
         HashMap<String, String[]> productCatalogueMap = new HashMap<>();
         //stockItems is all products
-        for(int i = 0; i < stockItems.size(); i++){
-            String[] product = stockItems.get(i); //full details of 1 product
-            String productID = product[1];
+        //full details of 1 product
+        for (String[] product : stockItems) {
+            String productID = product[0];
             String[] productAttributes = {product[1], product[2], product[3]};
             productCatalogueMap.put(productID, productAttributes);
         }
         return productCatalogueMap;
     }
-
 }
