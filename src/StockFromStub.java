@@ -6,8 +6,8 @@ public class StockFromStub implements StockInterface{
 
     public List<String[]> getFileData() {
         List<String[]> stubData = new ArrayList<>();
-        stubData.add(new String[]{"Ryzen_9","CPU", "Ryzen","450"});
-        stubData.add(new String[]{"GTX_1660","GPU", "Nvidia","600"});
+        stubData.add(new String[]{"INTEL_I5","Intel Core i5-10600k","457.02","CPU"});
+        stubData.add(new String[]{"RTX_3060","Nvidia GeForce RTX 3060 Ti","999.99","GPU"});
         return stubData;
     }
 

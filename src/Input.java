@@ -5,7 +5,6 @@ public class Input {
 
 	public static int getInt(int minRange, int maxRange) {
 		int number = 0;
-
 		do {
 			try {
 				System.out.println("Please make your selection:");
@@ -18,7 +17,7 @@ public class Input {
 				System.out.println("A fatal exception has occurred.");
 				ex.getStackTrace();
 			}
-		} while (number < minRange && number > maxRange);
+		} while (number < minRange || number > maxRange);
 		return number;
 		/**
 		 * Verify that the input range being targeted does not exceed the menu options.
@@ -27,10 +26,12 @@ public class Input {
 
 	public static String getString() {
 		String inputString;
-		while (!scanner.hasNextLine()) {
-			scanner.nextLine();
-		}
-		inputString = scanner.nextLine();
+		do {
+			while (!scanner.hasNextLine()) {
+				scanner.nextLine();
+			}
+			inputString = scanner.nextLine();
+		} while (inputString.isEmpty());
 		return inputString;
 	}
 }

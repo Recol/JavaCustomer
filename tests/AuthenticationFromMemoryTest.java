@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AuthenticationFromMemoryTest {
-
     @Test
     public void passwordMatchesReturnsTrueWhenValid(){
         AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
