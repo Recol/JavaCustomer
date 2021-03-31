@@ -1,9 +1,5 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,13 +8,7 @@ import static org.mockito.Mockito.when;
 
 public class EngineTest {
     StockInterface stockFromStub = new StockFromStub();
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
     @Test
     public void itemSelectionReturnsTrueWithStub(){
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
@@ -31,7 +21,7 @@ public class EngineTest {
     }
 
     @Test
-    public void itemSelectionReturnsTrueWithFile(){
+    public void itemSelectionReturnsTrueWithFileWhenFilePresent(){
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
         StockInterface stockFromFile = new StockFromFile();
@@ -56,5 +46,4 @@ public class EngineTest {
 
         assertTrue(testFine);
     }
-
 }

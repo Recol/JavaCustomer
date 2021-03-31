@@ -2,10 +2,10 @@ import java.io.*;
 import java.util.Formatter;
 import java.util.HashMap;
 
-public class AuthenticationFromMemory implements AuthenticationInterface {
-	HashMap<String, String> validDetails = new HashMap<String, String>();
+public class AuthenticationFromMemoryFake implements AuthenticationInterface {
+	private final HashMap<String, String> validDetails = new HashMap<String, String>();
 
-	public AuthenticationFromMemory() {
+	public AuthenticationFromMemoryFake() {
 		validDetails.put("username", "password");
 		validDetails.put("admin", "12345");
 	}
@@ -24,6 +24,10 @@ public class AuthenticationFromMemory implements AuthenticationInterface {
 			case("N"):
 				registerNewUser();
 		}
+	}
+
+	public HashMap<String, String> getValidDetails() {
+		return validDetails;
 	}
 
 	public boolean passwordMatches(String username, String password) {
@@ -55,7 +59,7 @@ public class AuthenticationFromMemory implements AuthenticationInterface {
 		System.out.println("User successfully registered! Please log in with your details");
 	}
 
-	public void existingUserLogin(){
+	private void existingUserLogin(){
 		try {
 			System.out.println("What is your username?");
 			String user;
@@ -75,7 +79,7 @@ public class AuthenticationFromMemory implements AuthenticationInterface {
 		}
 	}
 
-	public boolean passwordSecureFromMemory(String pass) {
+	private boolean passwordSecureFromMemory(String pass) {
 		int length = pass.length();
 		if (length < 6) {
 			System.out.println("Password is too short - ensure your password is 6 characters or more");

@@ -1,9 +1,9 @@
 public class Menu {
-	private static final StockFromFile stockToUse = new StockFromFile();
+	private static final StockFromFile fileStock = new StockFromFile();
 	private static final StockFromStub stubStock = new StockFromStub();
 
-	private static void storeMenu(){
-		Engine engineObject = new Engine(stubStock);
+	public static void storeMenu(){
+		Engine engineObject = new Engine(fileStock);
 		do {
 			engineObject.menuOutput();
 			int option = Input.getInt(1, 4);
@@ -32,7 +32,7 @@ public class Menu {
 	}
 
 	public static void main(String[] args) {
-		AuthenticationFromMemory auth = new AuthenticationFromMemory();
+		AuthenticationFromMemoryFake auth = new AuthenticationFromMemoryFake();
 		auth.loginMenu();
 		System.out.println("Welcome to the store!");
 		try {

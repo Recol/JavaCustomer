@@ -1,10 +1,14 @@
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AuthenticationFromMemoryTest {
+public class AuthenticationFromMemoryFakeTest {
     @Test
     public void passwordMatchesReturnsTrueWhenValid(){
-        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
 
         boolean detailsMatch = testAuthenticate.passwordMatches("username","password");
 
@@ -13,7 +17,7 @@ public class AuthenticationFromMemoryTest {
 
     @Test
     public void passwordMatchesReturnsFalseWhenInvalid(){
-        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
 
         boolean noMatch = testAuthenticate.passwordMatches("username","wrong password");
 
@@ -22,7 +26,7 @@ public class AuthenticationFromMemoryTest {
 
     @Test
     public void passwordMatchesReturnsFalseWhenNull(){
-        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
 
         boolean noMatch = testAuthenticate.passwordMatches("username",null);
 
@@ -31,7 +35,7 @@ public class AuthenticationFromMemoryTest {
 
     @Test
     public void userExistsReturnsTrueWhenValid(){
-        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
 
         boolean detailsMatch = testAuthenticate.userExists("username");
 
@@ -40,7 +44,7 @@ public class AuthenticationFromMemoryTest {
 
     @Test
     public void userExistsReturnsFalseWhenInvalid(){
-        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
 
         boolean noMatch = testAuthenticate.userExists("no such user");
 
@@ -49,11 +53,23 @@ public class AuthenticationFromMemoryTest {
 
     @Test
     public void userExistsReturnsFalseWhenNull(){
-        AuthenticationFromMemory testAuthenticate = new AuthenticationFromMemory();
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
 
         boolean noMatch = testAuthenticate.userExists(null);
 
         assertFalse(noMatch);
+    }
+
+    @Test
+    public void registrationMenuAddsToValidDetails(){
+        AuthenticationFromMemoryFake testAuthenticate = new AuthenticationFromMemoryFake();
+        ByteArrayInputStream in = new ByteArrayInputStream("testUser\ntestPassword".getBytes());
+        System.setIn(in);
+
+        testAuthenticate.registerNewUser();
+        HashMap<String, String> validDetails = testAuthenticate.getValidDetails();
+
+        assertEquals(validDetails.get("testUser"),"testPassword");
     }
 
 }
