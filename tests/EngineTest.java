@@ -1,14 +1,47 @@
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class EngineTest {
+    StockInterface stockFromStub = new StockFromStub();
+
     @Test
-    public void itemSelectionReturnsTrue(){
+    public void itemSelectionReturnsTrueWithStub(){
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
-        Engine testEngine = new Engine();
+        Engine testEngine = new Engine(stockFromStub);
 
+        boolean testFine = testEngine.itemSelect();
+
+        assertTrue(testFine);
+    }
+
+    @Test
+    public void itemSelectionReturnsTrueWithFileWhenFilePresent(){
+        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
+        System.setIn(in);
+        StockInterface stockFromFile = new StockFromFile();
+        Engine testEngine = new Engine(stockFromFile);
+
+        boolean testFine = testEngine.itemSelect();
+
+        assertTrue(testFine);
+    }
+
+    @Test
+    public void itemSelectionOutputIsCorrectWithMockFile(){
+        StockFromFile stockMock = mock(StockFromFile.class);
+        List<String[]> testData = new ArrayList<>();
+        testData.add(new String[]{"INTEL_I5","Intel Core i5-10600k","457.02","CPU"});
+        ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
+        System.setIn(in);
+        when(stockMock.getFileData()).thenReturn(testData);
+
+        Engine testEngine = new Engine(stockMock);
         boolean testFine = testEngine.itemSelect();
 
         assertTrue(testFine);
